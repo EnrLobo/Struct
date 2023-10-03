@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 class Program
 {
     struct Eletro
@@ -31,6 +31,22 @@ class Program
         lista.Add(novoEletro);
     }// fim funcao 
 
+
+    static void calcularCustoEletro(List<Eletro> vetorEletros, string nomeEletro)
+    {
+        double consumoDia, valorGastoDia, valorKw;
+        Console.Write("Valor do Kw em R$: ");
+        valorKw = Convert.ToDouble(Console.ReadLine());
+        foreach(Eletro eletro in vetorEletros)
+        {
+            if (eletro.nome.ToUpper().Equals(nomeEletro.ToUpper()))
+            {
+                consumoDia = eletro.potencia * eletro.tempoMedioUso;
+                valorGastoDia = consumoDia * valorKw;
+                Console.WriteLine($"Consumo em Kw por dia: {consumoDia}, por mês: {consumoDia*30}");
+            }
+        }
+    }
     static void listaEletro(List<Eletro> lista)
     {
         Console.WriteLine("Lista de Eletrodomesticos:");
