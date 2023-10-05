@@ -32,8 +32,28 @@ class Program
         lista.Add(novoEletro);
     }// fim funcao 
 
+    static void calcularCustoTotal(List<Eletro> vetorEletros)
+    {
+        double consumoDia = 0, valorGastoDia = 0, valorKw;
+        Console.Write("Valor do Kw em R$: ");
+        valorKw = Convert.ToDouble(Console.ReadLine());
+        foreach (Eletro eletro in vetorEletros)
+        {
+            consumoDia += eletro.potencia * eletro.tempoMedioUso;
+            valorGastoDia = consumoDia * valorKw;
+        }//fim do for
 
-    static void calcularCustoEletro(List<Eletro> vetorEletros, string nomeEletro)
+        Console.WriteLine($"Consumo total em Kw por dia: {Math.Round(consumoDia, 2)} e por mês: {Math.Round(consumoDia * 30, 2)}");
+        Console.WriteLine($"Valor gasto por dia: R${Math.Round(valorGastoDia, 2)} e por mês {Math.Round(valorGastoDia * 30, 2)}");
+
+        //for (int i = 0; i< vetorEletros.Count; i++)
+        //{
+        //    consumoDia += vetorEletros[i].potencia * vetorEletros[i].tempoMedioUso;
+        //}
+
+    }
+
+            static void calcularCustoEletro(List<Eletro> vetorEletros, string nomeEletro)
     {
         double consumoDia, valorGastoDia, valorKw;
         Console.Write("Valor do Kw em R$: ");
@@ -44,7 +64,8 @@ class Program
             {
                 consumoDia = eletro.potencia * eletro.tempoMedioUso;
                 valorGastoDia = consumoDia * valorKw;
-                Console.WriteLine($"Consumo em Kw por dia: {consumoDia}, por mês: {consumoDia*30}");
+                Console.WriteLine($"Consumo em Kw por dia: {Math.Round(consumoDia,2)} e por mês: {Math.Round(consumoDia*30,2)}");
+                Console.WriteLine($"Valor gasto por dia: R${Math.Round(valorGastoDia,2)} e por mês {Math.Round(valorGastoDia * 30, 2)}");
             }
         }
     }
