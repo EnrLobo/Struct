@@ -13,6 +13,7 @@ class Program
         Console.Write("\t*** Sistema de controle de Energia C# ***\n\n");
         Console.WriteLine("1-Cadastrar");
         Console.WriteLine("2-Listar");
+        Console.WriteLine("3-Calcular custo por eletro domestico");
         Console.WriteLine("0-Sair");
         Console.Write("\nEscolha uma opção: ");
         op = Convert.ToInt32(Console.ReadLine());
@@ -103,18 +104,24 @@ class Program
         do
         {
             op = menu();
-            switch (op){
-                case 1: Console.WriteLine("\n\tCadastrar\n");
-                        cadastEletro(vetorEletros);
+            switch (op)
+            {
+                case 1:
+                    cadastEletro(vetorEletros);
                     break;
-                case 2: Console.WriteLine("\t\nListar\n");
-                    Console.WriteLine("\t*** Dados do Eletrodomestico ***");
+                case 2:
                     listaEletro(vetorEletros);
                     break;
-                case 0: Console.WriteLine("Saindo");
-                    salvarDados(vetorEletros, "dados.txt");
+                case 3:
+                    Console.Write("Eletro para calculo: ");
+                    string eletroBusca = Console.ReadLine();
+                    calcularCustoEletro(vetorEletros, eletroBusca);
                     break;
-            }//fim switch
+                case 0:
+                    Console.WriteLine("Saindo");
+                    salvarDados(vetorEletros, "dadosEletro.txt");
+                    break;
+            }// fim switch
             Console.ReadKey();//espera uma tecla ser clicada para que feche ou avance no codigo, é uma pausa
             Console.Clear();
 
